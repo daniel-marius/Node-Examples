@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { CustomError } from '../errors/custom-error';
-import { HttpStatusCode } from '../errors/status-codes';
+import { HttpStatusCode } from '../errors/http-status';
 
 /**
  * Custom error handler to standardize error objects returned to

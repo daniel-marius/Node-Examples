@@ -32,7 +32,7 @@ export enum HttpStatusCode {
   HTTP_VERSION_NOT_SUPPORTED = 505,
 }
 
-export enum HttpStatusMessages {
+export enum HttpStatusMessage {
   OK = "Success!",
   CREATED = "Resource Created!",
   NO_CONTENT = "Resource Empty!",

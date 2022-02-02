@@ -3,7 +3,7 @@ import helmet from 'helmet';
 
 import { BadRequestError } from './errors/bad-request-error';
 import { NotFoundError } from './errors/not-found-error';
-import { HttpStatusMessages } from './errors/status-codes';
+import { HttpStatusMessage } from './errors/http-status';
 import { errorHandler } from './middlewares/error-handler';
 
 const PORT: number = 3000;
@@ -26,14 +26,14 @@ const TEAMS = [
 
 app.get('/:id', (req: Request, res: Response) => {
   if (req.params.id.includes('id')) {
-    throw new BadRequestError('forgot something?', HttpStatusMessages.BAD_REQUEST);
+    throw new BadRequestError('forgot something?', HttpStatusMessage.BAD_REQUEST);
   }
 
   res.status(200).send(TEAMS);
 });
 
 app.all('*', (req: Request, res: Response, next: NextFunction) => {
-  throw new NotFoundError(`URL: ${req.originalUrl} Not Found!`, HttpStatusMessages.NOT_FOUND);
+  throw new NotFoundError(`URL: ${req.originalUrl} Not Found!`, HttpStatusMessage.NOT_FOUND);
 });
 
 app.use(errorHandler);
