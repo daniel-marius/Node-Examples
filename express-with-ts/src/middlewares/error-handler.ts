@@ -25,9 +25,14 @@ import { HttpStatusCode } from '../errors/http-status';
      return res.status(err.statusCode).send({ error: err.serializeErrors() });
    }
 
-   res.status(HttpStatusCode.BAD_REQUEST).send({
+   if (req.timedout) {
+     console.log(`Attempted to call ${req.method} method after timeout .01s`);
+     return res.status(HttpStatusCode.SERVICE_UNAVAILABLE).send({error: 'Service unavailable. Please retry.'});
+   }
+
+   res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).send({
      error: { message: 'Something went wrong!' }
    });
 
-   next(err);
+   next();
  };
